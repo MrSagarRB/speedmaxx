@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpeedMaxx — Fiber Broadband for Shirdi, Kopargaon & Beyond</title>
+<meta name="description" content="Unlimited fiber broadband up to 1 Gbps with 24/7 support. Home, Wi-Fi, leased line and corporate internet from ₹550/month across Shirdi, Shrirampur, Kopargaon, Rahata and Loni.">
+<meta name="theme-color" content="#05070d">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script>
+  // Set theme + animation flags before first paint (no flash)
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('smx-theme'); } catch (e) {}
+    if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anim');
+  })();
+</script>
+<style>
+  @property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+  :root {
+    color-scheme: dark;
+    --bg: #05070d; --bg-2: #0a0f1c;
+    --card: rgba(255,255,255,.045); --card-hi: rgba(255,255,255,.08);
+    --border: rgba(255,255,255,.1);
+    --text: #eef1f8; --muted: #8e99b3;
+    --accent: #ff6a13; --accent-2: #ffb454; --accent-rgb: 255,106,19; --on-accent: #190a00;
+    --cyan: #2dd4ff; --good: #4ade80;
+    --net-rgb: 130,150,190; --net-alpha: 1;
+    --nav: rgba(10,15,28,.62);
+    --shadow: 0 24px 60px rgba(0,0,0,.5);
+    --grid: rgba(255,255,255,.035);
+    --r: 22px;
+    --font-h: "Space Grotesk", system-ui, sans-serif;
+    --font-b: "Inter", system-ui, sans-serif;
+    --font-m: "JetBrains Mono", ui-monospace, monospace;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+    --bg: #f4f6fb; --bg-2: #e9edf6;
+    --card: rgba(255,255,255,.72); --card-hi: #ffffff;
+    --border: rgba(15,23,42,.1);
+    --text: #0c1222; --muted: #566077;
+    --accent: #e85500; --accent-2: #ff8a2b; --accent-rgb: 232,85,0; --on-accent: #ffffff;
+    --cyan: #0284c7; --good: #12a150;
+    --net-rgb: 71,85,125; --net-alpha: .8;
+    --nav: rgba(255,255,255,.72);
+    --shadow: 0 20px 45px rgba(30,41,80,.12);
+    --grid: rgba(15,23,42,.045);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-padding-top: 90px; }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  body {
+    font-family: var(--font-b); background: var(--bg); color: var(--text); line-height: 1.65;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .4s, color .4s;
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  button { font: inherit; color: inherit; }
+  .i { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+  ::selection { background: var(--accent); color: var(--on-accent); }
+  .wrap { width: min(1180px, 100% - 32px); margin-inline: auto; position: relative; z-index: 2; }
+  section { padding: 110px 0; position: relative; }
+  h1, h2, h3 { font-family: var(--font-h); line-height: 1.05; letter-spacing: -.03em; font-weight: 700; }
+  h2 { font-size: clamp(2rem, 4.2vw, 3.2rem); text-wrap: balance; }
+  .grad { background: linear-gradient(95deg, var(--accent), var(--accent-2) 60%, var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mono { font-family: var(--font-m); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); margin-bottom: 18px; }
+  .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--accent); border-radius: 2px; }
+  .head { max-width: 660px; margin-bottom: 56px; }
+  .head.center { margin-inline: auto; text-align: center; }
+  .head.center .eyebrow { justify-content: center; }
+  .head p { text-wrap: balance; margin-top: 16px; color: var(--muted); font-size: 1.08rem; }
+
+  /* ===== Backgrounds ===== */
+  #net { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: var(--net-alpha); }
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 20%, transparent 75%);
+  }
+  .glow { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; z-index: 0; }
+  .glow.a { width: 520px; height: 520px; background: rgba(var(--accent-rgb), .22); top: -140px; right: -120px; }
+  .glow.b { width: 460px; height: 460px; background: color-mix(in srgb, var(--cyan) 22%, transparent); top: 380px; left: -200px; }
+  .cursor-glow { position: fixed; top: 0; left: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px; border-radius: 50%; pointer-events: none; z-index: 1;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), .11), transparent 65%); opacity: 0; transition: opacity .4s; }
+  .progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); z-index: 200;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--cyan)); }
+
+  /* ===== Buttons ===== */
+  .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 26px; border-radius: 14px; border: 1px solid transparent; font-weight: 600; font-size: .98rem; cursor: pointer; transition: box-shadow .3s, background .3s, border-color .3s; white-space: nowrap; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); box-shadow: 0 10px 30px rgba(var(--accent-rgb), .35); }
+  .btn-primary:hover { box-shadow: 0 14px 40px rgba(var(--accent-rgb), .55); }
+  .btn-ghost { background: var(--card); border-color: var(--border); backdrop-filter: blur(10px); }
+  .btn-ghost:hover { border-color: var(--accent); background: var(--card-hi); }
+  .btn-sm { padding: 10px 18px; font-size: .9rem; border-radius: 12px; }
+  .btn-block { width: 100%; }
+  .btn .i { transition: transform .3s; }
+  .btn:hover .i-arrow { transform: translateX(4px); }
+
+  /* ===== Nav ===== */
+  header { position: fixed; top: 14px; left: 0; right: 0; z-index: 100; }
+  .nav { width: min(1180px, 100% - 24px); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 10px 12px 10px 18px;
+    background: var(--nav); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-h); font-weight: 700; font-size: 1.35rem; letter-spacing: -.03em; }
+  .logo img { height: 54px; width: auto; transition: filter .4s; }
+  [data-theme="dark"] .logo img { filter: brightness(1.45) contrast(1.05); }
+  .links { display: flex; gap: 4px; }
+  .links a { padding: 8px 14px; border-radius: 10px; color: var(--muted); font-weight: 500; font-size: .94rem; transition: .2s; }
+  .links a:hover, .links a.on { color: var(--text); background: var(--card-hi); }
+  .nav-r { display: flex; align-items: center; gap: 8px; }
+  .icon-btn { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; border: 1px solid var(--border); background: var(--card); cursor: pointer; transition: .25s; }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+  #theme .moon, [data-theme="light"] #theme .sun { display: none; }
+  [data-theme="light"] #theme .moon { display: block; }
+  .burger { display: none; }
+
+  /* ===== Hero ===== */
+  .hero { padding: 168px 0 90px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; }
+  .status { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(10px); margin-bottom: 26px; font-size: .86rem; color: var(--muted); }
+  .status i { width: 9px; height: 9px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 0 rgba(74,222,128,.6); animation: ping 2s infinite; }
+  @keyframes ping { 70% { box-shadow: 0 0 0 9px rgba(74,222,128,0); } 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); } }
+  .hero h1 { font-size: clamp(2.8rem, 6.4vw, 5.2rem); margin-bottom: 26px; }
+  .hero h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .12em; margin-bottom: -.12em; }
+  .hero h1 .w > span { display: inline-block; }
+  .hero .lead { font-size: 1.15rem; color: var(--muted); max-width: 520px; margin-bottom: 34px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+  .mini-stats { display: flex; gap: 34px; flex-wrap: wrap; }
+  .mini-stats div { display: flex; flex-direction: column; }
+  .mini-stats b { font-family: var(--font-h); font-size: 1.7rem; letter-spacing: -.02em; }
+  .mini-stats span { color: var(--muted); font-size: .85rem; }
+
+  .console { position: relative; border-radius: 26px; background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: var(--shadow); padding: 20px 22px 24px; transform-style: preserve-3d; }
+  .console::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: linear-gradient(140deg, rgba(var(--accent-rgb), .6), transparent 35%, transparent 65%, color-mix(in srgb, var(--cyan) 60%, transparent));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+  .con-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .dots { display: flex; gap: 6px; }
+  .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+  .dots i:first-child { background: #ff5f57; } .dots i:nth-child(2) { background: #febc2e; } .dots i:nth-child(3) { background: #28c840; }
+  .con-title { color: var(--muted); }
+  .gauge-box { position: relative; width: 260px; margin: 6px auto 0; }
+  .gauge-box svg { width: 100%; overflow: visible; }
+  .gauge-read { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; }
+  .gauge-read b { display: block; font-family: var(--font-h); font-size: 3.4rem; line-height: 1; letter-spacing: -.04em; }
+  .gauge-read span { color: var(--muted); font-size: .8rem; }
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 14px; }
+  .metric { background: color-mix(in srgb, var(--text) 5%, transparent); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; }
+  .metric small { display: block; color: var(--muted); font-size: .72rem; }
+  .metric b { font-family: var(--font-h); font-size: 1.15rem; }
+  .metric b.c { color: var(--cyan); } .metric b.g { color: var(--good); }
+  .spark-wrap { border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px 4px; background: color-mix(in srgb, var(--text) 4%, transparent); }
+  .spark-wrap .row { display: flex; justify-content: space-between; color: var(--muted); }
+  .spark { width: 100%; height: 70px; display: block; }
+  .sim { text-align: center; margin-top: 10px; color: var(--muted); font-size: .72rem; opacity: .75; }
+  .float-chip { position: absolute; display: flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 14px; background: var(--card-hi); border: 1px solid var(--border); box-shadow: var(--shadow); font-weight: 600; font-size: .86rem; backdrop-filter: blur(12px); }
+  .float-chip .i { color: var(--accent); }
+  .fc1 { top: -22px; right: -14px; } .fc2 { left: -34px; top: 110px; } .fc3 { right: -22px; bottom: -18px; }
+
+  /* ===== Marquee ===== */
+  .marquee { padding: 26px 0; border-block: 1px solid var(--border); background: var(--card); backdrop-filter: blur(10px); overflow: hidden; position: relative; z-index: 2; }
+  .track { display: flex; gap: 52px; width: max-content; animation: slide 38s linear infinite; }
+  .marquee:hover .track { animation-play-state: paused; }
+  .track span { display: flex; align-items: center; gap: 52px; font-family: var(--font-h); font-weight: 600; font-size: 1.35rem; color: var(--muted); white-space: nowrap; }
+  .track span::after { content: "◆"; color: var(--accent); font-size: .7rem; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* ===== Stats ===== */
+  .stats { padding: 80px 0 20px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .stat { padding: 30px 26px; border-radius: var(--r); background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(12px); }
+  .stat b { display: block; font-family: var(--font-h); font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: -.04em; line-height: 1; }
+  .stat span { color: var(--muted); font-size: .95rem; }
+
+  /* ===== Spotlight cards ===== */
+  .spot { position: relative; overflow: hidden; }
+  .spot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--accent-rgb), .16), transparent 45%); }
+  .spot:hover::after { opacity: 1; }
+
+  /* ===== Services bento ===== */
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .svc { grid-column: span 2; padding: 30px; border-radius: var(--r); background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(12px); transition: border-color .3s, transform .3s; }
+  .svc:hover { border-color: rgba(var(--accent-rgb), .5); }
+  .svc.wide { grid-column: span 3; }
+  .svc .ico { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 22px; color: var(--accent);
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), .18), rgba(var(--accent-rgb), .04)); border: 1px solid rgba(var(--accent-rgb), .25); }
+  .svc .ico .i { width: 26px; height: 26px; }
+  .svc h3 { font-size: 1.35rem; margin-bottom: 10px; }
+  .svc p { color: var(--muted); font-size: .98rem; }
+  .svc .tagline { margin-top: 18px; display: inline-flex; gap: 8px; color: var(--cyan); }
+
+  /* ===== Coverage ===== */
+  .cov-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 28px; align-items: stretch; }
+  .map-card, .cov-panel { border-radius: 28px; background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(14px); }
+  .map-card { padding: 10px; position: relative; overflow: hidden; }
+  .map-card svg { width: 100%; height: auto; display: block; }
+  .edge { fill: none; stroke: rgba(var(--net-rgb), .45); stroke-width: 1.6; stroke-dasharray: 5 7; animation: dash 1.6s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset: -24; } }
+  .node { cursor: pointer; }
+  .node .core { fill: var(--bg-2); stroke: var(--accent); stroke-width: 2.5; transition: .25s; }
+  .node .ring { fill: none; stroke: var(--accent); stroke-width: 1.5; transform-box: fill-box; transform-origin: center; animation: ring 2.6s ease-out infinite; }
+  .node .lbl { fill: var(--text); font: 600 15px var(--font-h); }
+  .node .sub { fill: var(--muted); font: 500 11px var(--font-m); }
+  .node:hover .core, .node.on .core, .node:focus-visible .core { fill: var(--accent); }
+  .node:focus-visible { outline: none; }
+  @keyframes ring { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(2.6); opacity: 0; } }
+  .packet { fill: var(--accent-2); filter: drop-shadow(0 0 4px var(--accent)); }
+  .map-note { position: absolute; left: 22px; bottom: 14px; color: var(--muted); font-size: .72rem; opacity: .8; }
+  .cov-panel { padding: 34px 30px; display: flex; flex-direction: column; }
+  .cov-panel h3 { font-size: 2rem; margin: 8px 0 6px; }
+  .cov-panel p { color: var(--muted); }
+  .cov-price { margin: 26px 0; padding: 20px; border-radius: 18px; background: rgba(var(--accent-rgb), .08); border: 1px solid rgba(var(--accent-rgb), .25); }
+  .cov-price b { font-family: var(--font-h); font-size: 2.6rem; letter-spacing: -.03em; }
+  .cov-price span { color: var(--muted); }
+  .cov-price b span { color: var(--text); }
+  .cov-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .cov-list button { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border); background: transparent; cursor: pointer; font-size: .88rem; color: var(--muted); transition: .2s; }
+  .cov-list button:hover, .cov-list button.on { border-color: var(--accent); color: var(--text); background: rgba(var(--accent-rgb), .1); }
+  .cov-panel .btn { margin-top: auto; }
+
+  /* ===== Plans ===== */
+  .controls { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 44px; }
+  .seg { position: relative; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 2px; padding: 5px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(12px); }
+  .seg button { position: relative; z-index: 1; border: 0; background: none; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: .93rem; color: var(--muted); transition: color .25s; }
+  .seg button.on { color: var(--on-accent); }
+  .seg .ind { position: absolute; z-index: 0; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 6px 20px rgba(var(--accent-rgb), .4); transition: all .4s cubic-bezier(.2,.9,.3,1); pointer-events: none; }
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 16px; perspective: 1000px; }
+  .plan { position: relative; padding: 30px 26px 26px; border-radius: var(--r); background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(12px); display: flex; flex-direction: column; transition: border-color .3s, box-shadow .3s; transform-style: preserve-3d; }
+  .plan:hover { border-color: rgba(var(--accent-rgb), .5); box-shadow: var(--shadow); }
+  .plan.hot { border: 1.5px solid transparent;
+    background: linear-gradient(var(--bg-2), var(--bg-2)) padding-box, conic-gradient(from var(--ang), var(--accent), var(--cyan), var(--accent-2), var(--accent)) border-box;
+    animation: spin 5s linear infinite; box-shadow: 0 0 50px rgba(var(--accent-rgb), .15); }
+  [data-theme="light"] .plan.hot { background: linear-gradient(#fff, #fff) padding-box, conic-gradient(from var(--ang), var(--accent), var(--cyan), var(--accent-2), var(--accent)) border-box; }
+  @keyframes spin { to { --ang: 360deg; } }
+  .ribbon { position: absolute; top: 18px; right: 18px; padding: 4px 10px; border-radius: 999px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); font-family: var(--font-m); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  .plan .kind { color: var(--cyan); margin-bottom: 14px; }
+  .mbps { font-family: var(--font-h); font-size: 3.6rem; font-weight: 700; letter-spacing: -.05em; line-height: 1; }
+  .mbps small { font-size: 1rem; color: var(--muted); letter-spacing: 0; margin-left: 6px; font-weight: 500; }
+  .bar { height: 6px; border-radius: 6px; background: color-mix(in srgb, var(--text) 8%, transparent); margin: 18px 0 22px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: var(--w); transform-origin: 0 50%; border-radius: 6px; background: linear-gradient(90deg, var(--accent), var(--cyan)); }
+  .price { display: flex; align-items: baseline; gap: 2px; }
+  .price .rs { font-size: 1.3rem; font-weight: 600; color: var(--muted); margin-right: 2px; }
+  .price .amt { font-family: var(--font-h); font-size: 2.5rem; font-weight: 700; letter-spacing: -.04em; }
+  .price small { color: var(--muted); margin-left: 4px; }
+  .total { color: var(--muted); font-size: .84rem; min-height: 1.4em; margin: 4px 0 18px; }
+  .feat { display: grid; gap: 8px; margin-bottom: 22px; font-size: .9rem; color: var(--muted); }
+  .feat li { display: flex; gap: 8px; align-items: center; }
+  .feat .i { color: var(--good); width: 1.05em; height: 1.05em; stroke-width: 2.6; }
+  .feat li.hl { color: var(--text); font-weight: 600; }
+  .feat li.hl .i { color: var(--accent); }
+  .plan .btn { margin-top: auto; }
+  .fine { text-align: center; margin-top: 30px; color: var(--muted); font-size: .88rem; }
+
+  /* ===== Finder ===== */
+  .finder { margin-top: 70px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 28px; overflow: hidden; background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(14px); }
+  .finder-in { padding: 40px 38px; }
+  .finder-in h3 { font-size: 1.8rem; margin-bottom: 8px; }
+  .finder-in > p { color: var(--muted); margin-bottom: 26px; }
+  .range-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; font-weight: 600; }
+  .range-row output { font-family: var(--font-h); font-size: 1.5rem; color: var(--accent); }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 6px; background: linear-gradient(90deg, var(--accent) var(--p, 20%), color-mix(in srgb, var(--text) 12%, transparent) var(--p, 20%)); outline-offset: 6px; margin-bottom: 26px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 4px solid var(--accent); box-shadow: 0 4px 14px rgba(var(--accent-rgb), .5); cursor: grab; }
+  input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 4px solid var(--accent); cursor: grab; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips label { cursor: pointer; }
+  .chips input { position: absolute; opacity: 0; pointer-events: none; }
+  .chips span { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--border); font-size: .9rem; font-weight: 500; color: var(--muted); transition: .2s; }
+  .chips input:checked + span { border-color: var(--accent); background: rgba(var(--accent-rgb), .12); color: var(--text); }
+  .chips input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .finder-out { padding: 40px 38px; background: linear-gradient(160deg, rgba(var(--accent-rgb), .14), rgba(45,212,255,.06)); border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+  .finder-out .big { font-family: var(--font-h); font-size: clamp(4rem, 8vw, 6rem); letter-spacing: -.05em; line-height: 1; }
+  .finder-out .big small { font-size: 1.4rem; color: var(--muted); letter-spacing: 0; margin-left: 8px; }
+  .finder-out p { color: var(--muted); margin: 14px 0 26px; max-width: 360px; }
+  .finder-out .btn { align-self: flex-start; }
+
+  /* ===== Why ===== */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .why-list { display: grid; gap: 14px; }
+  .why-item { display: flex; gap: 18px; padding: 22px; border-radius: 20px; background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(12px); }
+  .why-item .ico { flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; color: var(--cyan); background: color-mix(in srgb, var(--cyan) 12%, transparent); }
+  .why-item h3 { font-size: 1.15rem; margin-bottom: 4px; }
+  .why-item p { color: var(--muted); font-size: .95rem; }
+  .corp { position: relative; padding: 46px 40px; border-radius: 30px; overflow: hidden; background: linear-gradient(150deg, #1a1030, #0a1226 60%, #0b1c2e); color: #eef1f8; border: 1px solid rgba(255,255,255,.12); box-shadow: var(--shadow); }
+  .corp .rings { position: absolute; right: -120px; top: -120px; width: 380px; height: 380px; pointer-events: none; }
+  .corp .rings i { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid rgba(255,138,43,.4); animation: ring 4s ease-out infinite; }
+  .corp .rings i:nth-child(2) { animation-delay: 1.3s; } .corp .rings i:nth-child(3) { animation-delay: 2.6s; }
+  .corp > * { position: relative; }
+  .corp h3 { font-size: 2.2rem; margin: 10px 0 12px; max-width: 360px; }
+  .corp p { color: #aeb8d0; margin-bottom: 24px; max-width: 380px; }
+  .corp ul { display: grid; gap: 12px; margin-bottom: 30px; }
+  .corp li { display: flex; gap: 10px; align-items: center; font-weight: 500; }
+  .corp li .i { color: #ff9a3d; }
+  .corp .mono { color: #ffb454; }
+
+  /* ===== Steps ===== */
+  .tl { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .tl-line { position: absolute; top: 34px; left: 8%; right: 8%; height: 2px; background: var(--border); }
+  .tl-line i { display: block; height: 100%; transform-origin: 0 50%; background: linear-gradient(90deg, var(--accent), var(--cyan)); }
+  .step { position: relative; padding: 0 14px; text-align: center; }
+  .step .n { width: 68px; height: 68px; margin: 0 auto 22px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-h); font-size: 1.5rem; font-weight: 700; background: var(--bg-2); border: 2px solid var(--accent); box-shadow: 0 0 0 8px var(--bg), 0 0 30px rgba(var(--accent-rgb), .3); position: relative; z-index: 1; }
+  .step h3 { font-size: 1.35rem; margin-bottom: 8px; }
+  .step p { color: var(--muted); max-width: 300px; margin-inline: auto; }
+
+  /* ===== FAQ ===== */
+  .faq { max-width: 800px; margin-inline: auto; display: grid; gap: 12px; }
+  .faq-item { border-radius: 18px; background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(12px); transition: border-color .3s; }
+  .faq-item.open { border-color: rgba(var(--accent-rgb), .5); }
+  .faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-align: left; padding: 22px 26px; background: none; border: 0; cursor: pointer; font-family: var(--font-h); font-size: 1.12rem; font-weight: 600; }
+  .faq-q .i { transition: transform .35s; color: var(--accent); }
+  .faq-item.open .faq-q .i { transform: rotate(45deg); }
+  .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.2,.8,.2,1); }
+  .faq-item.open .faq-a { grid-template-rows: 1fr; }
+  .faq-a > div { overflow: hidden; }
+  .faq-a p { padding: 0 26px 24px; color: var(--muted); }
+
+  /* ===== Contact ===== */
+  .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+  .contact-grid > div > p { color: var(--muted); margin-top: 14px; font-size: 1.05rem; }
+  .ci-list { display: grid; gap: 14px; margin: 34px 0 28px; }
+  .ci { display: flex; gap: 16px; align-items: center; padding: 16px 18px; border-radius: 18px; background: var(--card); border: 1px solid var(--border); transition: border-color .3s; }
+  a.ci:hover { border-color: var(--accent); }
+  .ci .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: var(--accent); background: rgba(var(--accent-rgb), .12); flex: none; }
+  .ci small { display: block; color: var(--muted); font-size: .8rem; }
+  .ci b { font-weight: 600; }
+  .social { display: flex; gap: 10px; }
+  .social a { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px; border: 1px solid var(--border); background: var(--card); transition: .25s; }
+  .social a:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .social svg { width: 18px; height: 18px; fill: currentColor; }
+  form.card { padding: 38px; border-radius: 28px; background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(16px); box-shadow: var(--shadow); }
+  form.card h3 { font-size: 1.7rem; margin-bottom: 6px; }
+  form.card > p { color: var(--muted); margin-bottom: 24px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  label.f { display: block; font-size: .82rem; font-weight: 600; margin-bottom: 7px; color: var(--muted); }
+  input.t, select.t { width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--border); background: color-mix(in srgb, var(--text) 4%, transparent); color: var(--text); font: inherit; margin-bottom: 16px; transition: .25s; }
+  select.t option { background: var(--bg-2); color: var(--text); }
+  input.t:focus, select.t:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(var(--accent-rgb), .15); }
+  .fmsg { margin-top: 14px; font-size: .9rem; font-weight: 600; min-height: 1.3em; }
+  .fmsg.err { color: #ff6b6b; } .fmsg.ok { color: var(--good); }
+
+  /* ===== CTA + footer ===== */
+  .cta { padding: 20px 0 110px; }
+  .cta-box { position: relative; overflow: hidden; padding: 70px 44px; border-radius: 34px; text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); }
+  .cta-box::before { content: ""; position: absolute; inset: 0; opacity: .22;
+    background-image: radial-gradient(circle at 20% 30%, #fff 1.5px, transparent 2px), radial-gradient(circle at 70% 60%, #fff 1.5px, transparent 2px), radial-gradient(circle at 90% 20%, #fff 1.5px, transparent 2px);
+    background-size: 90px 90px, 130px 130px, 170px 170px; }
+  .cta-box > * { position: relative; }
+  .cta-box h2 { max-width: 640px; margin: 0 auto 14px; }
+  .cta-box p { opacity: .85; margin-bottom: 30px; font-size: 1.1rem; }
+  .cta-box .btn { background: #0c1222; color: #fff; box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+  footer { position: relative; z-index: 2; border-top: 1px solid var(--border); background: color-mix(in srgb, var(--bg-2) 80%, transparent); backdrop-filter: blur(14px); padding: 64px 0 30px; }
+  .f-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 40px; margin-bottom: 44px; }
+  .f-grid p { color: var(--muted); max-width: 300px; margin-top: 16px; font-size: .94rem; }
+  .f-grid h4 { font-family: var(--font-h); margin-bottom: 16px; font-size: 1rem; }
+  .f-grid li { margin-bottom: 10px; color: var(--muted); font-size: .93rem; }
+  .f-grid a:hover { color: var(--accent); }
+  .legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: .85rem; }
+
+  /* ===== Reveal states (only when JS + animation allowed) ===== */
+  html.anim [data-reveal] { opacity: 0; transform: translateY(36px); }
+  html.anim .hero .w > span { opacity: 0; }
+  html.anim .hero-fade { opacity: 0; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1020px) {
+    .hero-grid, .cov-grid, .why-grid, .contact-grid, .finder { grid-template-columns: 1fr; }
+    .finder-out { border-left: 0; border-top: 1px solid var(--border); }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .bento { grid-template-columns: 1fr 1fr; } .svc, .svc.wide { grid-column: span 1; }
+    .f-grid { grid-template-columns: 1fr 1fr; }
+    .fc2 { left: -10px; top: 110px; } .fc1 { right: -6px; } .fc3 { right: -6px; }
+    .hero { padding-top: 140px; }
+  }
+  @media (max-width: 860px) {
+    .links { position: absolute; top: calc(100% + 10px); left: 0; right: 0; flex-direction: column; padding: 12px; border-radius: 18px; background: var(--bg-2); border: 1px solid var(--border); box-shadow: var(--shadow); display: none; }
+    .links.open { display: flex; }
+    .links a { padding: 14px; }
+    .burger { display: grid; }
+    .nav { position: relative; }
+    .nav-r .login { display: none; }
+  }
+  @media (max-width: 640px) {
+    .logo img { height: 46px; }
+    section { padding: 76px 0; }
+    .bento, .row, .tl { grid-template-columns: 1fr; }
+    .tl-line { display: none; }
+    .tl { gap: 40px; }
+    .metrics { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .metric { padding: 10px; }
+    .float-chip { display: none; }
+    .nav-r .btn { display: none; }
+    .finder-in, .finder-out, form.card { padding: 28px 22px; }
+    .cta-box { padding: 54px 24px; }
+    .f-grid { grid-template-columns: 1fr; }
+    .stat { padding: 22px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  }
+  @media (hover: none) { .cursor-glow { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- SVG icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="i-fiber" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5M4.9 4.9l3.5 3.5M15.6 15.6l3.5 3.5M19.1 4.9l-3.5 3.5M8.4 15.6l-3.5 3.5"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 20 0M5.5 12.4a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><path d="M12 19.5h.01"/></symbol>
+    <symbol id="i-tv" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="m17 2-5 5-5-5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></symbol>
+    <symbol id="i-rupee" viewBox="0 0 24 24"><path d="M6 3h12M6 8h12M6 13h3a5 5 0 0 0 5-5M9 13l6 8"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></symbol>
+    <symbol id="i-game" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></symbol>
+    <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24"><path d="m22 8-6 4 6 4z"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
+  </defs>
+</svg>
+
+<div class="progress" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="logo" aria-label="SpeedMaxx home"><img src="assets/logo.png" alt="SpeedMaxx" width="147" height="54"></a>
+    <nav class="links" id="links" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#plans">Plans</a>
+      <a href="#why">Why us</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-r">
+      <button class="icon-btn" id="theme" aria-label="Toggle light and dark mode" title="Toggle theme">
+        <svg class="i sun"><use href="#i-sun"/></svg><svg class="i moon"><use href="#i-moon"/></svg>
+      </button>
+      <a class="btn btn-ghost btn-sm login" href="client/index.html">Client login</a>
+      <a class="btn btn-primary btn-sm magnetic" href="#contact">Get connected</a>
+      <button class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><svg class="i"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="glow a"></div><div class="glow b"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <div class="status hero-fade"><i></i><span>Network online · Serving 5 towns across Maharashtra</span></div>
+        <h1>
+          <span class="w"><span>Enabling</span></span>
+          <span class="w"><span class="grad">bandwidth</span></span>
+          <span class="w"><span>for more.</span></span>
+        </h1>
+        <p class="lead hero-fade">Unlimited fiber broadband with fast uploads and downloads at an honest price — backed by 24/7 local support. Built for homes, shops and enterprises.</p>
+        <div class="cta-row hero-fade">
+          <a class="btn btn-primary magnetic" href="#plans">View plans <svg class="i i-arrow"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost magnetic" href="tel:+918109092323"><svg class="i"><use href="#i-phone"/></svg> +91 81 09 09 23 23</a>
+        </div>
+        <div class="mini-stats hero-fade">
+          <div><b>1 Gbps</b><span>Top speed available</span></div>
+          <div><b>2,500+</b><span>Active clients</span></div>
+          <div><b>99%</b><span>Service uptime</span></div>
+        </div>
+      </div>
+
+      <div class="hero-fade" style="position:relative">
+        <div class="console" data-tilt-card>
+          <div class="con-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="mono con-title">core-node · shirdi</span>
+            <span class="mono" style="color:var(--good)">● live</span>
+          </div>
+          <div class="gauge-box">
+            <svg viewBox="0 0 240 135" aria-hidden="true">
+              <defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:var(--cyan)"/></linearGradient></defs>
+              <path d="M20 125 A100 100 0 0 1 220 125" fill="none" stroke="var(--border)" stroke-width="14" stroke-linecap="round"/>
+              <path id="gauge" d="M20 125 A100 100 0 0 1 220 125" fill="none" stroke="url(#gg)" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+            </svg>
+            <div class="gauge-read"><b id="gauge-n">0</b><span>Mbps · plan speed</span></div>
+          </div>
+          <div class="metrics">
+            <div class="metric"><small>Latency</small><b class="c" id="m-ping">4 ms</b></div>
+            <div class="metric"><small>Uptime</small><b class="g">99%</b></div>
+            <div class="metric"><small>Data</small><b>Unlimited</b></div>
+          </div>
+          <div class="spark-wrap">
+            <div class="row mono"><span>Throughput</span><span id="m-rate" style="color:var(--accent)">—</span></div>
+            <svg class="spark" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true">
+              <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--accent);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--accent);stop-opacity:0"/></linearGradient></defs>
+              <path id="spark-a" fill="url(#sg)"/><path id="spark-l" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+            </svg>
+          </div>
+          <div class="sim">Illustrative preview · not a live measurement</div>
+        </div>
+        <div class="float-chip fc1"><svg class="i"><use href="#i-fiber"/></svg> FTTH fiber</div>
+        <div class="float-chip fc2"><svg class="i"><use href="#i-headset"/></svg> 24/7 support</div>
+        <div class="float-chip fc3"><svg class="i"><use href="#i-bolt"/></svg> No GB limits</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>High-speed broadband</span><span>FTTH fiber</span><span>Leased line</span><span>Wi-Fi plans</span><span>IPTV</span><span>Managed security</span><span>Voice services</span><span>Up to 1 Gbps</span>
+      <span>High-speed broadband</span><span>FTTH fiber</span><span>Leased line</span><span>Wi-Fi plans</span><span>IPTV</span><span>Managed security</span><span>Voice services</span><span>Up to 1 Gbps</span>
+    </div>
+  </div>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stat-grid">
+        <div class="stat" data-reveal><b><span class="count" data-to="2500" data-suffix="+">0</span></b><span>Happy clients</span></div>
+        <div class="stat" data-reveal><b><span class="count" data-to="1" data-suffix=" Gbps">0</span></b><span>Top speed available</span></div>
+        <div class="stat" data-reveal><b><span class="count" data-to="99" data-suffix="%">0</span></b><span>Service uptime</span></div>
+        <div class="stat" data-reveal><b><span class="count" data-to="24" data-suffix="/7">0</span></b><span>Dedicated support</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="eyebrow mono">What we offer</span>
+        <h2>One network. <span class="grad">Every connection.</span></h2>
+        <p>From home Wi-Fi to enterprise leased lines, SpeedMaxx keeps homes, shops and offices online.</p>
+      </div>
+      <div class="bento">
+        <article class="svc wide spot" data-reveal>
+          <div class="ico"><svg class="i"><use href="#i-bolt"/></svg></div>
+          <h3>High-speed broadband</h3>
+          <p>Unlimited plans from 100 to 500 Mbps with no GB counting, no throttling and prices that include GST.</p>
+          <span class="tagline mono">100 – 500 Mbps</span>
+        </article>
+        <article class="svc wide spot" data-reveal>
+          <div class="ico"><svg class="i"><use href="#i-fiber"/></svg></div>
+          <h3>FTTH — fiber to the home</h3>
+          <p>Pure fiber straight to your door for stable speeds and maximum uptime — even at remote locations.</p>
+          <span class="tagline mono">Up to 1 Gbps</span>
+        </article>
+        <article class="svc spot" data-reveal>
+          <div class="ico"><svg class="i"><use href="#i-server"/></svg></div>
+          <h3>Leased line</h3>
+          <p>Dedicated bandwidth for businesses that can't afford downtime.</p>
+        </article>
+        <article class="svc spot" data-reveal>
+          <div class="ico"><svg class="i"><use href="#i-wifi"/></svg></div>
+          <h3>Wi-Fi plans</h3>
+          <p>Hotspot and managed Wi-Fi for hotels, hostels, cafés and apartments.</p>
+        </article>
+        <article class="svc spot" data-reveal>
+          <div class="ico"><svg class="i"><use href="#i-tv"/></svg></div>
+          <h3>IPTV</h3>
+          <p>Internet-delivered television, streamed over your fiber connection.</p>
+        </article>
+        <article class="svc wide spot" data-reveal>
+          <div class="ico"><svg class="i"><use href="#i-shield"/></svg></div>
+          <h3>Managed internet &amp; security</h3>
+          <p>Enhanced threat protection and network visibility for growing businesses.</p>
+        </article>
+        <article class="svc wide spot" data-reveal>
+          <div class="ico"><svg class="i"><use href="#i-phone"/></svg></div>
+          <h3>Voice services</h3>
+          <p>Reliable business voice that rides on the same fast, stable network.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COVERAGE ===== -->
+  <section id="coverage">
+    <div class="wrap">
+      <div class="head center" data-reveal>
+        <span class="eyebrow mono">Coverage</span>
+        <h2>Our network, <span class="grad">node by node.</span></h2>
+        <p>Select a town to see local pricing. Packets flowing along the links are just for show.</p>
+      </div>
+      <div class="cov-grid" data-reveal>
+        <div class="map-card">
+          <svg id="map" viewBox="0 0 620 440" role="img" aria-label="Schematic network map of SpeedMaxx coverage with Shirdi at the center"></svg>
+          <span class="map-note mono">Schematic · not to scale</span>
+        </div>
+        <aside class="cov-panel" aria-live="polite">
+          <span class="mono" style="color:var(--cyan)" id="cov-kind">Head office</span>
+          <h3 id="cov-name">Shirdi</h3>
+          <p id="cov-desc">Kankuri Road, Shivaji Nagar, Shirdi</p>
+          <div class="cov-price"><span class="mono">Plans from</span><br><b>₹<span id="cov-from">575</span></b><span> /month on 12-month plans</span></div>
+          <div class="cov-list" id="cov-list"></div>
+          <button class="btn btn-primary btn-block" id="cov-btn" type="button">See plans for this area <svg class="i i-arrow"><use href="#i-arrow"/></svg></button>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLANS ===== -->
+  <section id="plans">
+    <div class="wrap">
+      <div class="head center" data-reveal>
+        <span class="eyebrow mono">Plans &amp; pricing</span>
+        <h2>Pick your area. <span class="grad">Pick your speed.</span></h2>
+        <p>Longer terms cost less per month. Unlimited data on every plan, GST included.</p>
+      </div>
+
+      <div class="controls" data-reveal>
+        <div class="seg" id="region-seg" role="tablist" aria-label="Region"></div>
+        <div class="seg" id="term-seg" role="tablist" aria-label="Plan duration"></div>
+      </div>
+
+      <div class="plan-grid" id="plan-grid" aria-live="polite"></div>
+      <p class="fine">*Terms and conditions apply. Plan availability may vary by location — call us to confirm for your address.</p>
+
+      <!-- Finder -->
+      <div class="finder" data-reveal id="finder">
+        <div class="finder-in">
+          <span class="eyebrow mono">Plan finder</span>
+          <h3>How much speed do you need?</h3>
+          <p>Tell us about your household or office and we'll suggest a plan.</p>
+          <div class="range-row"><label for="devices">Connected devices</label><output id="dev-out">8</output></div>
+          <input type="range" id="devices" min="1" max="40" value="8">
+          <div class="chips" role="group" aria-label="What do you do online?">
+            <label><input type="checkbox" value="60" checked><span><svg class="i"><use href="#i-play"/></svg>4K streaming</span></label>
+            <label><input type="checkbox" value="40"><span><svg class="i"><use href="#i-game"/></svg>Online gaming</span></label>
+            <label><input type="checkbox" value="50"><span><svg class="i"><use href="#i-laptop"/></svg>Work from home</span></label>
+            <label><input type="checkbox" value="30"><span><svg class="i"><use href="#i-cam"/></svg>CCTV &amp; smart home</span></label>
+          </div>
+        </div>
+        <div class="finder-out">
+          <span class="mono" style="color:var(--cyan)">We recommend</span>
+          <div class="big"><span id="rec-n">200</span><small>Mbps</small></div>
+          <p id="rec-txt">A solid fit for a busy household.</p>
+          <button class="btn btn-primary magnetic" id="rec-btn" type="button">See {speed} Mbps plans <svg class="i i-arrow"><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY ===== -->
+  <section id="why">
+    <div class="wrap why-grid">
+      <div>
+        <div class="head" data-reveal style="margin-bottom:32px">
+          <span class="eyebrow mono">Why SpeedMaxx</span>
+          <h2>Local. Reliable. <span class="grad">Refreshingly affordable.</span></h2>
+        </div>
+        <div class="why-list">
+          <div class="why-item" data-reveal>
+            <div class="ico"><svg class="i"><use href="#i-clock"/></svg></div>
+            <div><h3>99% uptime</h3><p>A resilient network with maximum uptime, even at remote locations.</p></div>
+          </div>
+          <div class="why-item" data-reveal>
+            <div class="ico"><svg class="i"><use href="#i-headset"/></svg></div>
+            <div><h3>Support that responds</h3><p>Customers consistently praise our fast, helpful support team.</p></div>
+          </div>
+          <div class="why-item" data-reveal>
+            <div class="ico"><svg class="i"><use href="#i-rupee"/></svg></div>
+            <div><h3>Transparent pricing</h3><p>Simple monthly rates with GST included and no GB limits.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="corp" data-reveal>
+        <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span class="mono">For business</span>
+        <h3>Ready for a business-grade line?</h3>
+        <p>Corporate plans come with unlimited data and bonus free days on longer terms.</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>200, 300 &amp; 500 Mbps unlimited</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Up to 90 bonus days on 12-month plans</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Leased line &amp; managed security</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary magnetic">Talk to sales <svg class="i i-arrow"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW ===== -->
+  <section id="how">
+    <div class="wrap">
+      <div class="head center" data-reveal>
+        <span class="eyebrow mono">How it works</span>
+        <h2>Online in <span class="grad">three steps.</span></h2>
+      </div>
+      <div class="tl">
+        <div class="tl-line" aria-hidden="true"><i></i></div>
+        <div class="step" data-reveal><div class="n">1</div><h3>Choose a plan</h3><p>Pick the speed and duration that fit your home or business.</p></div>
+        <div class="step" data-reveal><div class="n">2</div><h3>Request a callback</h3><p>Share your details and our team will call to confirm coverage.</p></div>
+        <div class="step" data-reveal><div class="n">3</div><h3>Get connected</h3><p>Our technicians install your line and you're online.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="head center" data-reveal>
+        <span class="eyebrow mono">FAQ</span>
+        <h2>Good <span class="grad">questions.</span></h2>
+      </div>
+      <div class="faq" id="faq-list">
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false"><span>Is the data really unlimited?</span><svg class="i"><use href="#i-plus"/></svg></button>
+          <div class="faq-a"><div><p>Yes. SpeedMaxx plans come with unlimited data and no GB counting. Prices shown include GST.</p></div></div>
+        </div>
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false"><span>Which areas do you serve?</span><svg class="i"><use href="#i-plus"/></svg></button>
+          <div class="faq-a"><div><p>We currently serve Shirdi, Shrirampur, Kopargaon, Rahata and Loni. Call us or send a callback request and we'll confirm coverage at your exact address.</p></div></div>
+        </div>
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false"><span>Can I get 1 Gbps?</span><svg class="i"><use href="#i-plus"/></svg></button>
+          <div class="faq-a"><div><p>Speeds up to 1 Gbps are available on our fiber network. Standard plans are listed up to 500 Mbps — contact our team for gigabit availability and pricing.</p></div></div>
+        </div>
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false"><span>How do I manage or recharge my connection?</span><svg class="i"><use href="#i-plus"/></svg></button>
+          <div class="faq-a"><div><p>Existing customers can use the client login portal linked in the header. For anything else, our support team is available 24/7.</p></div></div>
+        </div>
+        <div class="faq-item" data-reveal>
+          <button class="faq-q" aria-expanded="false"><span>Do you offer business connections?</span><svg class="i"><use href="#i-plus"/></svg></button>
+          <div class="faq-a"><div><p>Yes — corporate plans (200, 300 and 500 Mbps unlimited), leased lines, managed internet and security, Wi-Fi hotspots, IPTV and voice services.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div data-reveal>
+        <span class="eyebrow mono">Contact</span>
+        <h2>Let's get you <span class="grad">connected.</span></h2>
+        <p>Apply for a new connection or ask us anything. Our team is available around the clock.</p>
+        <div class="ci-list">
+          <a class="ci" href="tel:+918109092323"><span class="ico"><svg class="i"><use href="#i-phone"/></svg></span><span><small>Call us</small><b>+91 81 09 09 23 23</b></span></a>
+          <a class="ci" href="mailto:support@speemaxx.in"><span class="ico"><svg class="i"><use href="#i-mail"/></svg></span><span><small>Email</small><b>support@speemaxx.in</b></span></a>
+          <div class="ci"><span class="ico"><svg class="i"><use href="#i-pin"/></svg></span><span><small>Head office</small><b>Kankuri Road, Shivaji Nagar, Shirdi</b></span></div>
+        </div>
+        <div class="social" aria-label="Social media">
+          <a href="https://www.facebook.com/speedmaxxdigitalnetwork/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8V6.5c0-.7.2-1.1 1.2-1.1H17V2.2C16.7 2.1 15.7 2 14.6 2 12.2 2 10.5 3.5 10.5 6.2V8H8v3.5h2.5V22H14V11.5h2.6L17 8z"/></svg></a>
+          <a href="https://twitter.com/SpeedMaxx2" target="_blank" rel="noopener" aria-label="Twitter / X"><svg viewBox="0 0 24 24"><path d="M18.2 2h3.3l-7.2 8.3L22.8 22h-6.6l-5.2-6.8L5 22H1.7l7.7-8.8L1.2 2H8l4.7 6.2zm-1.2 18h1.8L7 3.9H5.1z"/></svg></a>
+          <a href="https://www.linkedin.com/in/speedmaxx-digital-8353001a5/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCnYt0GW4yRVG1aGvTA6cbuw" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9 .5 12 .5 12s0 3 .5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.7 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+
+      <form class="card" id="lead-form" novalidate data-reveal>
+        <h3>Apply for a connection</h3>
+        <p>Share your details and we'll call you back.</p>
+        <div class="row">
+          <div><label class="f" for="f-name">Full name</label><input class="t" id="f-name" name="name" autocomplete="name"></div>
+          <div><label class="f" for="f-phone">Mobile number</label><input class="t" id="f-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit number"></div>
+        </div>
+        <label class="f" for="f-email">Email (optional)</label>
+        <input class="t" id="f-email" name="email" type="email" autocomplete="email">
+        <label class="f" for="f-address">Installation address</label>
+        <input class="t" id="f-address" name="address" autocomplete="street-address">
+        <div class="row">
+          <div><label class="f" for="f-city">City</label>
+            <select class="t" id="f-city" name="city"><option>Shirdi</option><option>Shrirampur</option><option>Kopargaon</option><option>Rahata</option><option>Loni</option><option>Other</option></select></div>
+          <div><label class="f" for="f-pin">Pincode</label><input class="t" id="f-pin" name="pin" inputmode="numeric" maxlength="6" autocomplete="postal-code"></div>
+        </div>
+        <label class="f" for="f-plan">Interested in</label>
+        <select class="t" id="f-plan" name="plan"><option>Home broadband</option><option>Corporate plan</option><option>Leased line</option><option>Wi-Fi / hotspot</option><option>IPTV</option></select>
+        <button class="btn btn-primary btn-block" type="submit">Request callback <svg class="i i-arrow"><use href="#i-arrow"/></svg></button>
+        <div class="fmsg" id="fmsg" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="cta-box" data-reveal>
+        <h2>Faster internet is one call away.</h2>
+        <p>Talk to our team today and get connected in no time.</p>
+        <a class="btn magnetic" href="tel:+918109092323"><svg class="i"><use href="#i-phone"/></svg> Call +91 81 09 09 23 23</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#top" class="logo" aria-label="SpeedMaxx home"><img src="assets/logo.png" alt="SpeedMaxx" width="109" height="40"></a>
+        <p>Affordable internet service provider offering the best speed for uploads and downloads.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="#services">Services</a></li><li><a href="#coverage">Coverage</a></li><li><a href="#plans">Plans</a></li><li><a href="#faq">FAQ</a></li></ul>
+      </div>
+      <div>
+        <h4>Customers</h4>
+        <ul><li><a href="client/index.html">Client login</a></li><li><a href="https://speedmaxx.co.in/terms_and_conditions.html" target="_blank" rel="noopener">Terms &amp; conditions</a></li><li><a href="https://speedmaxx.co.in/blog.html" target="_blank" rel="noopener">Blog</a></li></ul>
+      </div>
+      <div>
+        <h4>Reach us</h4>
+        <ul><li>+91 81 09 09 23 23</li><li>support@speemaxx.in</li><li>Kankuri Road, Shivaji Nagar, Shirdi</li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="yr">2026</span> SpeedMaxx Digital Networks Pvt Ltd. All rights reserved.</span>
+      <span>SpeedMaxx® is a registered trademark.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+  const animate = hasGsap && !reduce;
+  if (!animate) root.classList.remove('anim');          // content stays visible if libs fail
+  if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+  const inr = n => Math.round(n).toLocaleString('en-IN');
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  /* ============ DATA (source: speedmaxx.co.in/package.html) ============ */
+  const TERMS = [{ k: 1, l: '1 month' }, { k: 3, l: '3 months' }, { k: 6, l: '6 months' }, { k: 12, l: '12 months' }];
+  const REGIONS = {
+    kop:  { label: 'Kopargaon · Rahata · Loni', plans: {
+      100: { 1: 599, 3: 1725, 6: 3360, 12: 6600 },  150: { 1: 649, 3: 1875, 6: 3594, 12: 7188 },
+      200: { 1: 699, 3: 2025, 6: 3894, 12: 7788 },  300: { 1: 749, 3: 2175, 6: 4194, 12: 8388 },
+      500: { 1: 1199, 3: 3597, 6: 6594, 12: 11988 } } },
+    shi:  { label: 'Shirdi · Shrirampur', plans: {
+      200: { 1: 675, 3: 1875, 6: 3450, 12: 6900 },  300: { 1: 699, 3: 1947, 6: 3594, 12: 7188 },
+      500: { 1: 1199, 3: 3597, 6: 6594, 12: 11988 } } },
+    corp: { label: 'Corporate', corp: true, plans: {
+      200: { 1: [999, 0],  3: [2997, 10], 6: [5994, 30], 12: [11988, 70] },
+      300: { 1: [1199, 0], 3: [3597, 10], 6: [7194, 30], 12: [14388, 90] },
+      500: { 1: [1499, 0], 3: [4497, 10], 6: [8994, 30], 12: [17988, 90] } } }
+  };
+  const HOT = 300;
+  const fromPrice = key => Math.min(...Object.values(REGIONS[key].plans).map(p => p[12] / 12));
+
+  const TOWNS = [
+    { id: 'shirdi',     name: 'Shirdi',     region: 'shi', x: 320, y: 215, hub: true, kind: 'Head office', desc: 'Kankuri Road, Shivaji Nagar, Shirdi' },
+    { id: 'kopargaon',  name: 'Kopargaon',  region: 'kop', x: 105, y: 110, kind: 'Service area', desc: 'Kopargaon region — wide plan range from 100 to 500 Mbps.' },
+    { id: 'shrirampur', name: 'Shrirampur', region: 'shi', x: 530, y: 150, kind: 'Service area', desc: 'Shrirampur region — 200, 300 and 500 Mbps unlimited.' },
+    { id: 'rahata',     name: 'Rahata',     region: 'kop', x: 255, y: 345, kind: 'Service area', desc: 'Rahata region — wide plan range from 100 to 500 Mbps.' },
+    { id: 'loni',       name: 'Loni',       region: 'kop', x: 470, y: 360, kind: 'Service area', desc: 'Loni region — wide plan range from 100 to 500 Mbps.' }
+  ];
+
+  /* ============ THEME ============ */
+  const themeBtn = $('#theme');
+  const setTheme = (t, persist) => {
+    root.setAttribute('data-theme', t);
+    if (persist) { try { localStorage.setItem('smx-theme', t); } catch (e) {} }
+    $('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#05070d' : '#f4f6fb');
+    netColors();
+  };
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    if (document.startViewTransition && !reduce) document.startViewTransition(() => setTheme(next, true));
+    else setTheme(next, true);
+  });
+
+  /* ============ NETWORK CANVAS BACKGROUND ============ */
+  const cv = $('#net'), ctx = cv.getContext('2d');
+  let W, H, dpr, nodes = [], packets = [], mouse = { x: -999, y: -999 }, rgb = '130,150,190', accent = '255,106,19', LINK = 150, lastSpawn = 0, running = false;
+  function netColors() {
+    const s = getComputedStyle(root);
+    rgb = s.getPropertyValue('--net-rgb').trim() || rgb;
+    accent = s.getPropertyValue('--accent-rgb').trim() || accent;
+    if (!running) drawStatic();
+  }
+  function netResize() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    LINK = W < 700 ? 110 : 150;
+    const n = clamp(Math.round(W * H / 17000), 26, 85);
+    nodes = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35, r: 1 + Math.random() * 1.4
+    }));
+    packets = [];
+  }
+  function drawFrame(step) {
+    ctx.clearRect(0, 0, W, H);
+    const links = [];
+    for (const n of nodes) {
+      if (step) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < -20) n.x = W + 20; else if (n.x > W + 20) n.x = -20;
+        if (n.y < -20) n.y = H + 20; else if (n.y > H + 20) n.y = -20;
+      }
+    }
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
+        if (d < LINK) {
+          ctx.strokeStyle = `rgba(${rgb},${(1 - d / LINK) * .28})`;
+          ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          links.push([a, b]);
+        }
+      }
+      const md = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+      if (md < 190) {
+        ctx.strokeStyle = `rgba(${accent},${(1 - md / 190) * .55})`;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+      }
+      ctx.fillStyle = `rgba(${rgb},.65)`;
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.283); ctx.fill();
+    }
+    if (step) {
+      const now = performance.now();
+      if (now - lastSpawn > 380 && links.length && packets.length < 16) {
+        const l = links[(Math.random() * links.length) | 0];
+        packets.push({ a: l[0], b: l[1], t: 0, s: .012 + Math.random() * .014 });
+        lastSpawn = now;
+      }
+      packets = packets.filter(p => (p.t += p.s) < 1 && Math.hypot(p.a.x - p.b.x, p.a.y - p.b.y) < LINK * 1.15);
+      for (const p of packets) {
+        const x = p.a.x + (p.b.x - p.a.x) * p.t, y = p.a.y + (p.b.y - p.a.y) * p.t;
+        ctx.fillStyle = `rgba(${accent},.18)`; ctx.beginPath(); ctx.arc(x, y, 7, 0, 6.283); ctx.fill();
+        ctx.fillStyle = `rgba(${accent},.95)`; ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 6.283); ctx.fill();
+      }
+    }
+  }
+  function drawStatic() { if (W) drawFrame(false); }
+  function loop() { if (!running) return; drawFrame(true); requestAnimationFrame(loop); }
+  netResize(); netColors();
+  setTheme(root.getAttribute('data-theme'));            // syncs <meta theme-color> + canvas colors
+  if (reduce) drawStatic();
+  else { running = true; loop(); }
+  let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { netResize(); if (!running) drawStatic(); }, 150); });
+  addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  document.addEventListener('mouseleave', () => { mouse.x = mouse.y = -999; });
+  document.addEventListener('visibilitychange', () => {
+    if (reduce) return;
+    if (document.hidden) running = false; else if (!running) { running = true; loop(); }
+  });
+
+  /* ============ SMOOTH SCROLL (Lenis) ============ */
+  let lenis = null;
+  if (typeof Lenis !== 'undefined' && !reduce) {
+    lenis = new Lenis({ duration: 1.15, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    if (hasGsap) {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      const raf = t => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
+    }
+  }
+  const goTo = target => {
+    const el = typeof target === 'string' ? $(target) : target; if (!el) return;
+    if (lenis) lenis.scrollTo(el, { offset: -84 });
+    else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute('href'); if (id.length < 2) return;
+    e.preventDefault(); goTo(id);
+    closeMenu();
+  });
+
+  /* ============ NAV ============ */
+  const burger = $('#burger'), links = $('#links');
+  function closeMenu() { links.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
+  burger.addEventListener('click', () => burger.setAttribute('aria-expanded', links.classList.toggle('open')));
+  const navLinks = $$('.links a');
+  const secObs = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  ['services', 'coverage', 'plans', 'why', 'faq', 'contact'].forEach(id => { const s = document.getElementById(id); if (s) secObs.observe(s); });
+
+  /* ============ SPOTLIGHT + CURSOR GLOW ============ */
+  document.addEventListener('pointermove', e => {
+    const c = e.target.closest && e.target.closest('.spot');
+    if (c) { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); }
+  }, { passive: true });
+  const cg = $('.cursor-glow');
+  if (finePointer && animate) {
+    const qx = gsap.quickTo(cg, 'x', { duration: .6, ease: 'power3' }), qy = gsap.quickTo(cg, 'y', { duration: .6, ease: 'power3' });
+    addEventListener('pointermove', e => { cg.style.opacity = 1; qx(e.clientX); qy(e.clientY); }, { passive: true });
+  }
+
+  /* ============ MAGNETIC BUTTONS ============ */
+  if (finePointer && animate) {
+    $$('.magnetic').forEach(b => {
+      const qx = gsap.quickTo(b, 'x', { duration: .4, ease: 'power3' }), qy = gsap.quickTo(b, 'y', { duration: .4, ease: 'power3' });
+      b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); qx((e.clientX - r.left - r.width / 2) * .25); qy((e.clientY - r.top - r.height / 2) * .35); });
+      b.addEventListener('pointerleave', () => { qx(0); qy(0); });
+    });
+  }
+
+  /* ============ SEGMENTED CONTROLS (sliding indicator) ============ */
+  function moveInd(seg) {
+    const on = $('button.on', seg), ind = $('.ind', seg); if (!on || !ind) return;
+    ind.style.cssText = `left:${on.offsetLeft}px;top:${on.offsetTop}px;width:${on.offsetWidth}px;height:${on.offsetHeight}px`;
+  }
+
+  /* ============ PLANS ============ */
+  let region = 'shi', term = 12;
+  const regionSeg = $('#region-seg'), termSeg = $('#term-seg'), grid = $('#plan-grid');
+  const tiltOK = finePointer && !reduce && typeof VanillaTilt !== 'undefined';
+
+  function renderSegs() {
+    regionSeg.innerHTML = '<span class="ind"></span>' + Object.entries(REGIONS).map(([k, r]) =>
+      `<button type="button" role="tab" data-r="${k}" aria-selected="${k === region}" class="${k === region ? 'on' : ''}">${r.label}</button>`).join('');
+    termSeg.innerHTML = '<span class="ind"></span>' + TERMS.map(t =>
+      `<button type="button" role="tab" data-t="${t.k}" aria-selected="${t.k === term}" class="${t.k === term ? 'on' : ''}">${t.l}</button>`).join('');
+    requestAnimationFrame(() => { moveInd(regionSeg); moveInd(termSeg); });
+  }
+  function renderPlans(anim = true) {
+    const r = REGIONS[region];
+    const check = '<svg class="i"><use href="#i-check"/></svg>';
+    grid.innerHTML = Object.entries(r.plans).map(([speed, p]) => {
+      const [total, free] = r.corp ? p[term] : [p[term], 0];
+      const per = total / term, hot = +speed === HOT;
+      const extra = [];
+      if (region === 'shi' && term === 12) extra.push('Free OTT included');
+      if (free) extra.push(`+${free} bonus days`);
+      return `<article class="plan spot${hot ? ' hot' : ''}">
+        ${hot ? '<span class="ribbon">Best seller</span>' : ''}
+        <div class="kind mono">${r.corp ? 'Business' : 'Home'} · Unlimited</div>
+        <div class="mbps">${speed}<small>Mbps</small></div>
+        <div class="bar"><i style="--w:${(speed / 500) * 100}%"></i></div>
+        <div class="price"><span class="rs">₹</span><span class="amt" data-v="${per}">${inr(per)}</span><small>/mo</small></div>
+        <div class="total">${term > 1 ? `₹${inr(total)} billed for ${term} months` : 'Billed monthly'}</div>
+        <ul class="feat">
+          <li>${check}Unlimited data</li><li>${check}GST included</li>
+          ${extra.map(x => `<li class="hl">${check}${x}</li>`).join('')}
+        </ul>
+        <a class="btn ${hot ? 'btn-primary' : 'btn-ghost'}" href="#contact" data-pick="${speed} Mbps">Get ${speed} Mbps <svg class="i i-arrow"><use href="#i-arrow"/></svg></a>
+      </article>`;
+    }).join('');
+    const cards = $$('.plan', grid);
+    if (tiltOK) VanillaTilt.init(cards, { max: 5, speed: 500, scale: 1.015, perspective: 1000 });
+    if (animate && anim) {
+      gsap.fromTo(cards, { y: 34, opacity: 0, rotateX: -8 }, { y: 0, opacity: 1, rotateX: 0, duration: .7, stagger: .08, ease: 'power3.out', clearProps: 'transform,opacity' });
+      gsap.fromTo($$('.bar i', grid), { scaleX: 0 }, { scaleX: 1, duration: 1, delay: .2, stagger: .08, ease: 'power3.out' });
+      $$('.amt', grid).forEach(el => {
+        const o = { v: 0 }, to = +el.dataset.v;
+        gsap.to(o, { v: to, duration: .9, ease: 'power2.out', onUpdate: () => el.textContent = inr(o.v) });
+      });
+    }
+  }
+  function setRegion(r) { region = r; renderSegs(); renderPlans(); }
+  regionSeg.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setRegion(b.dataset.r); });
+  termSeg.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { term = +b.dataset.t; renderSegs(); renderPlans(); } });
+  renderSegs(); renderPlans(false);
+  addEventListener('resize', () => { moveInd(regionSeg); moveInd(termSeg); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { moveInd(regionSeg); moveInd(termSeg); });
+
+  let picked = '';
+  grid.addEventListener('click', e => { const a = e.target.closest('[data-pick]'); if (a) picked = a.dataset.pick; });
+
+  /* ============ COVERAGE MAP ============ */
+  (function buildMap() {
+    const svg = $('#map'), hub = TOWNS[0];
+    const edges = [...TOWNS.slice(1).map(t => [hub, t]), [TOWNS[3], TOWNS[4]]];
+    const curve = (a, b, i) => {
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, dx = b.x - a.x, dy = b.y - a.y, k = (i % 2 ? -.14 : .14);
+      return `M${a.x} ${a.y} Q${mx - dy * k} ${my + dx * k} ${b.x} ${b.y}`;
+    };
+    let h = '<defs><radialGradient id="mg" cx="50%" cy="50%" r="50%"><stop offset="0" style="stop-color:var(--accent);stop-opacity:.18"/><stop offset="1" style="stop-color:var(--accent);stop-opacity:0"/></radialGradient></defs>';
+    h += `<circle cx="${hub.x}" cy="${hub.y}" r="190" fill="url(#mg)"/>`;
+    edges.forEach((e, i) => { h += `<path id="e${i}" class="edge" d="${curve(e[0], e[1], i)}"/>`; });
+    if (!reduce) edges.forEach((e, i) => {
+      h += `<circle class="packet" r="3.6"><animateMotion dur="${(3 + i * .5).toFixed(1)}s" repeatCount="indefinite" begin="${(i * .45).toFixed(2)}s"><mpath href="#e${i}"/></animateMotion></circle>`;
+      h += `<circle class="packet" r="3"><animateMotion dur="${(3.6 + i * .4).toFixed(1)}s" repeatCount="indefinite" begin="${(i * .8).toFixed(2)}s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#e${i}"/></animateMotion></circle>`;
+    });
+    TOWNS.forEach(t => {
+      const ty = t.y + (t.y > 300 ? 36 : (t.hub ? -44 : -26)), r = t.hub ? 15 : 10;
+      h += `<g class="node" tabindex="0" role="button" data-id="${t.id}" aria-label="${t.name}">
+        <circle class="ring" cx="${t.x}" cy="${t.y}" r="${r}"/>
+        <circle class="core" cx="${t.x}" cy="${t.y}" r="${r}"/>
+        <text class="lbl" x="${t.x}" y="${ty}" text-anchor="middle">${t.name}</text>
+        ${t.hub ? `<text class="sub" x="${t.x}" y="${ty + 15}" text-anchor="middle">HEAD OFFICE</text>` : ''}
+      </g>`;
+    });
+    svg.innerHTML = h;
+
+    const list = $('#cov-list');
+    list.innerHTML = TOWNS.map(t => `<button type="button" data-id="${t.id}">${t.name}</button>`).join('');
+    let current = TOWNS[0];
+    const show = t => {
+      current = t;
+      $('#cov-kind').textContent = t.kind; $('#cov-name').textContent = t.name; $('#cov-desc').textContent = t.desc;
+      $('#cov-from').textContent = inr(fromPrice(t.region));
+      $$('.node', svg).forEach(n => n.classList.toggle('on', n.dataset.id === t.id));
+      $$('button', list).forEach(b => b.classList.toggle('on', b.dataset.id === t.id));
+    };
+    const pick = id => show(TOWNS.find(t => t.id === id));
+    svg.addEventListener('click', e => { const n = e.target.closest('.node'); if (n) pick(n.dataset.id); });
+    svg.addEventListener('mouseover', e => { const n = e.target.closest('.node'); if (n) pick(n.dataset.id); });
+    svg.addEventListener('focusin', e => { const n = e.target.closest('.node'); if (n) pick(n.dataset.id); });
+    svg.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.node')) { e.preventDefault(); pick(e.target.closest('.node').dataset.id); } });
+    list.addEventListener('click', e => { const b = e.target.closest('button'); if (b) pick(b.dataset.id); });
+    $('#cov-btn').addEventListener('click', () => {
+      setRegion(current.region);
+      const sel = $('#f-city'); [...sel.options].forEach(o => { if (o.text === current.name) sel.value = o.text; });
+      goTo('#plans');
+    });
+    show(current);
+  })();
+
+  /* ============ PLAN FINDER ============ */
+  (function finder() {
+    const dev = $('#devices'), out = $('#dev-out'), recN = $('#rec-n'), recTxt = $('#rec-txt'), recBtn = $('#rec-btn');
+    const boxes = $$('.chips input');
+    const TEXT = {
+      100: 'Great for light use — a few devices, streaming and browsing.',
+      150: 'A comfortable fit for a small family with regular HD streaming.',
+      200: 'A solid fit for a busy household with several screens online.',
+      300: 'Our best seller — smooth for 4K, gaming and video calls together.',
+      500: 'Maximum headroom for heavy, always-on, many-device usage.'
+    };
+    let shown = 0;
+    function calc() {
+      const d = +dev.value;
+      out.textContent = d;
+      dev.style.setProperty('--p', ((d - 1) / 39 * 100) + '%');
+      const need = 20 + d * 8 + boxes.reduce((s, b) => s + (b.checked ? +b.value : 0), 0);
+      const speed = need <= 100 ? 100 : need <= 150 ? 150 : need <= 200 ? 200 : need <= 300 ? 300 : 500;
+      recTxt.textContent = TEXT[speed];
+      recBtn.firstChild.textContent = `See ${speed} Mbps plans `;
+      recBtn.dataset.speed = speed;
+      if (animate) { const o = { v: shown }; gsap.to(o, { v: speed, duration: .6, ease: 'power2.out', onUpdate: () => recN.textContent = Math.round(o.v) }); }
+      else recN.textContent = speed;
+      shown = speed;
+    }
+    dev.addEventListener('input', calc); boxes.forEach(b => b.addEventListener('change', calc));
+    recBtn.addEventListener('click', () => {
+      const speed = +recBtn.dataset.speed;
+      if (speed < 200 && region !== 'kop') setRegion('kop');
+      goTo('#plans');
+    });
+    calc();
+  })();
+
+  /* ============ FAQ ============ */
+  $('#faq-list').addEventListener('click', e => {
+    const q = e.target.closest('.faq-q'); if (!q) return;
+    const item = q.parentElement, open = !item.classList.contains('open');
+    $$('.faq-item.open').forEach(i => { i.classList.remove('open'); $('.faq-q', i).setAttribute('aria-expanded', 'false'); });
+    item.classList.toggle('open', open); q.setAttribute('aria-expanded', open);
+  });
+
+  /* ============ HERO CONSOLE (gauge + sparkline) ============ */
+  (function console_() {
+    const gauge = $('#gauge'), gn = $('#gauge-n');
+    const setG = v => { gn.textContent = Math.round(v); gauge.style.strokeDashoffset = 100 - v / 1000 * 100; };
+    if (animate) { const o = { v: 0 }; gsap.to(o, { v: 500, duration: 2.2, delay: 1, ease: 'expo.out', onUpdate: () => setG(o.v) }); }
+    else setG(500);
+
+    const N = 40, data = Array.from({ length: N }, (_, i) => 55 + Math.sin(i / 3) * 12 + Math.random() * 10);
+    const la = $('#spark-l'), aa = $('#spark-a'), rate = $('#m-rate'), ping = $('#m-ping');
+    const draw = () => {
+      const pts = data.map((v, i) => `${(i * 300 / (N - 1)).toFixed(1)},${(70 - v * .65).toFixed(1)}`);
+      la.setAttribute('d', 'M' + pts.join(' L')); aa.setAttribute('d', `M${pts.join(' L')} L300,70 L0,70Z`);
+      rate.textContent = `↓ ${Math.round(470 + (data[N - 1] - 55) * 2)} Mbps`;
+    };
+    draw();
+    if (!reduce) setInterval(() => {
+      if (document.hidden) return;
+      data.shift(); data.push(clamp(data[data.length - 1] + (Math.random() - .5) * 18, 30, 92));
+      draw(); ping.textContent = (3 + Math.floor(Math.random() * 4)) + ' ms';
+    }, 900);
+  })();
+
+  /* ============ LEAD FORM ============ */
+  const form = $('#lead-form'), fmsg = $('#fmsg');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(form));
+    fmsg.className = 'fmsg';
+    if (!d.name.trim() || !d.address.trim()) { fmsg.classList.add('err'); fmsg.textContent = 'Please add your name and installation address.'; return; }
+    if (!/^[6-9]\d{9}$/.test(d.phone.replace(/[\s-]/g, '').replace(/^(\+91|91)/, ''))) { fmsg.classList.add('err'); fmsg.textContent = 'Please enter a valid 10-digit mobile number.'; return; }
+    const body = [`Name: ${d.name}`, `Mobile: ${d.phone}`, `Email: ${d.email || '-'}`, `Address: ${d.address}, ${d.city} ${d.pin}`, `Interested in: ${d.plan}${picked ? ' (' + picked + ')' : ''}`].join('\n');
+    location.href = `mailto:support@speemaxx.in?subject=${encodeURIComponent('New connection request')}&body=${encodeURIComponent(body)}`;
+    fmsg.classList.add('ok'); fmsg.textContent = 'Your email app should open with the details filled in — just press send!';
+  });
+  $('#yr').textContent = new Date().getFullYear();
+
+  /* ============ GSAP: INTRO + SCROLL ANIMATIONS ============ */
+  if (animate) {
+    // hero intro
+    const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    tl.fromTo('.hero .w > span', { yPercent: 110, opacity: 1 }, { yPercent: 0, opacity: 1, duration: 1.1, stagger: .09 })
+      .fromTo('.hero-fade', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .9, stagger: .1 }, '-=.7')
+      .from('.fc1,.fc2,.fc3', { scale: .6, opacity: 0, duration: .7, stagger: .12, ease: 'back.out(2)' }, '-=.4');
+
+    // generic reveals
+    ScrollTrigger.batch('[data-reveal]', {
+      start: 'top 90%', once: true,
+      onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: .9, stagger: .09, ease: 'power3.out', overwrite: true })
+    });
+
+    // counters
+    $$('.count').forEach(el => {
+      const to = +el.dataset.to, suf = el.dataset.suffix || '', o = { v: 0 };
+      ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: () =>
+        gsap.to(o, { v: to, duration: 1.8, ease: 'power2.out', onUpdate: () => el.textContent = inr(o.v) + suf }) });
+    });
+
+    // parallax glows + hero console
+    gsap.to('.glow.a', { yPercent: 35, ease: 'none', scrollTrigger: { trigger: '.hero', scrub: true, start: 'top top', end: 'bottom top' } });
+    gsap.to('.glow.b', { yPercent: -30, ease: 'none', scrollTrigger: { trigger: '.hero', scrub: true, start: 'top top', end: 'bottom top' } });
+
+    // scroll progress bar
+    gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: .2 } });
+
+    // timeline line draws with scroll
+    gsap.to('.tl-line i', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '.tl', start: 'top 75%', end: 'bottom 60%', scrub: true } });
+    gsap.set('.tl-line i', { scaleX: 0 });
+
+    if (tiltOK) VanillaTilt.init($('.console'), { max: 4, speed: 600, perspective: 1200 });
+    addEventListener('load', () => ScrollTrigger.refresh());
+  }
+})();
+</script>
+</body>
+</html>
